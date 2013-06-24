@@ -8,37 +8,11 @@ defmodule LinkShrinkex do
   
     iex> LinkShrinkex.shrink_url "http://www.elixir-lang.org"
     {:ok, "http://goo.gl/Shz0u"}
-
-  
-  ### Additional Options
-  
-  JSON Response
-  
-  iex> LinkShrinkex.shrink_url "http://www.elixir-lang.org", [:json]
-  {:ok,"{\"kind\":\"urlshortener#url\",\"id\":\"http://goo.gl/Shz0u\",\"longUrl\":\"http://www.elixir-lang.org/\"}"}
-  
-  List
-  
-  iex> LinkShrinkex.shrink_url "http://www.elixir-lang.org", [:list]  
-  {:ok,[kind: "urlshortener#url", id: "http://goo.gl/Shz0u", longUrl: "http://www.elixir-lang.org/"]}
-  
-  Urls
-  
-  iex> LinkShrinkex.shrink_url "http://www.elixir-lang.org", [:urls]
-  { :ok, [id: "http://goo.gl/Shz0u", longUrl: "http://www.elixir-lang.org/"] }
-  
-  Short Url
-  
-  iex> LinkShrinkex.shrink_url "http://www.elixir-lang.org", [:short_url]
-  "http://goo.gl/Shz0u"
-  
-  Default
-  
-  iex> LinkShrinkex.shrink_url "http://www.elixir-lang.org"
-  {:ok, "http://goo.gl/Shz0u"}
-  
+    
+    iex> LinkShrinkex.shrink_url "http://www.elixir-lang.org", [:json]
+    {:ok,"{\"kind\":\"urlshortener#url\",\"id\":\"http://goo.gl/Shz0u\",\"longUrl\":\"http://www.elixir-lang.org/\"}"}
   """
-  
+
   def start do
     :application.start(:inets)
     :ssl.start
@@ -52,9 +26,23 @@ defmodule LinkShrinkex do
   @doc "Prepares the body request for API"
   def prepare_request_body(url), do: LinkShrinkex.Request.prepare_request_body(url)
   
-  @doc "Creates the short url."
-    def shrink_url(url), do: LinkShrinkex.Request.shrink_url(url, [])
-    def shrink_url(url, opts), do: LinkShrinkex.Request.shrink_url(url, opts)
+  @doc """
+  Creates a short url from a long url using Google's URL Shortner API
+  
+  Args: 
+    * url - URL, binary string
+  """
+  def shrink_url(url), do: LinkShrinkex.Request.shrink_url(url, [])
+  @doc """
+  Args: 
+    * url - URL, binary string
+  Options:
+    * [:json] - Returns API response in JSON
+    * [:list] - Returns API response in List type
+    * [:urls] - Returns both short and long urls
+    * [:short_url] - Returns the short url only
+  """
+  def shrink_url(url, opts), do: LinkShrinkex.Request.shrink_url(url, opts)
 end
 
 defexception LinkShrinkex.Error, value: nil do
@@ -76,8 +64,7 @@ defimpl LinkShrinkex.Request, for: BitString do
   def prepare_request_body(url) do
     binary_to_list("{'longUrl': '" <> URI.decode(url) <>"'}")
   end
-  
-  @doc "Creates a short url from a long url using Google's URL Shortner API"
+
   def shrink_url(url), do: shrink_url(url, [])
   def shrink_url(url, opts) do
     case :httpc.request(:post, { 'https://www.googleapis.com/urlshortener/v1/url', [], 'application/json', prepare_request_body(url) },[], []) do
