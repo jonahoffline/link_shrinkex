@@ -3,7 +3,7 @@ defmodule LinkShrinkex.Mixfile do
 
   def project do
     [ app: :link_shrinkex,
-      version: "0.0.1",
+      version: "0.0.2",
       deps: deps ]
   end
 
@@ -18,3 +18,4 @@ defmodule LinkShrinkex.Mixfile do
     [{ :jsex, "0.0.1", github: "talentdeficit/jsex" }]
   end
 end
+
