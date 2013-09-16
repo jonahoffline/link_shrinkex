@@ -53,3 +53,7 @@ MIX_ENV=test mix do deps.get, test
 
 Create a Pull Request :)
 
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/jonahoffline/link_shrinkex/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
