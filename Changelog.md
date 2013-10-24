@@ -1,5 +1,15 @@
 # LinkShrinkex Changelog
 
+## 0.0.3
+
+Released October 23, 2013
+([0.0.3](https://github.com/jonahoffline/link_shrinkex/tree/v0.0.3)).
+
+* Update JSex dependency to version 0.2
+* Update version to 0.0.3
+* Add version number to README.
+
+
 ## 0.0.2
 
 Released July 26, 2013
