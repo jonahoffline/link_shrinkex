@@ -3,7 +3,7 @@ defmodule LinkShrinkex.Mixfile do
 
   def project do
     [ app: :link_shrinkex,
-      version: "0.0.3",
+      version: "0.0.4",
       deps: deps ]
   end
 
