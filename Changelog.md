@@ -1,5 +1,14 @@
 # LinkShrinkex Changelog
 
+## 0.0.4
+
+Released October 23, 2013
+([0.0.3](https://github.com/jonahoffline/link_shrinkex/tree/v0.0.4)).
+
+* Replace deprecated binary_to_list method with String.to_char_list! (Elixir 0.10.3)
+* Update version to 0.0.4
+
+
 ## 0.0.3
 
 Released October 23, 2013
