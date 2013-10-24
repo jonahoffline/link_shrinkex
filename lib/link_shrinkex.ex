@@ -62,7 +62,7 @@ end
 
 defimpl LinkShrinkex.Request, for: BitString do
   def prepare_request_body(url) do
-    binary_to_list("{'longUrl': '" <> URI.decode(url) <>"'}")
+    String.to_char_list!("{'longUrl': '" <> URI.decode(url) <>"'}")
   end
 
   def shrink_url(url), do: shrink_url(url, [])
