@@ -1,7 +1,17 @@
 language: erlang
 notifications:
-  recipients:
-    - jonah@pixelhipsters.com
+  email:
+    recipients:
+      - jonah@pixelhipsters.com
+  irc:
+    channels:
+      - irc.freenode.org#rubyonadhd
+    template:
+      - "Yo yo yo yo!! Make some noise, Ta-ta-ta Travis-bot in da house motherfuckers, this build better represent!"
+      - "%{author} pushed some shit, check it out..."
+      - "%{repository}#%{build_number} (%{branch} - %{commit} : %{author}): %{message}"
+      - "Change view : %{compare_url}"
+      - "Build details : %{build_url}"
 otp_release:
   - R16B
 before_install:
