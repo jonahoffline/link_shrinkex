@@ -55,9 +55,9 @@ defprotocol LinkShrinkex.Request do
   def shrink_url(url, opts // [])
 end
 
-defimpl LinkShrinkex.Request, for: Any do
-  def prepare_request_body(url), do: (raise LinkShrinkex.Error), value: url
-  def shrink_url(url, []),  do: (raise LinkShrinkex.Error), value: url
+defimpl LinkShrinkex.Request, for: [Blank, Number, Float, Integer, Tuple, Atom] do
+  def prepare_request_body(_), do: (raise LinkShrinkex.Error)
+  def shrink_url(_, []),  do: (raise LinkShrinkex.Error)
 end
 
 defimpl LinkShrinkex.Request, for: BitString do
