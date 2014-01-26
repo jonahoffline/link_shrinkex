@@ -3,7 +3,7 @@ defmodule LinkShrinkex.Mixfile do
 
   def project do
     [ app: :link_shrinkex,
-      version: "0.0.4",
+      version: String.strip(File.read!("VERSION")),
       deps: deps ]
   end
 
@@ -13,7 +13,6 @@ defmodule LinkShrinkex.Mixfile do
   end
 
   # Returns the list of dependencies in the format:
-  # { :foobar, "0.1", git: "https://github.com/elixir-lang/foobar.git" }
   defp deps do
     [{ :jsex, "0.2", github: "talentdeficit/jsex" }]
   end
