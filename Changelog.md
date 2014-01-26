@@ -1,5 +1,17 @@
 # LinkShrinkex Changelog
 
+## 0.0.5
+
+Released January 26, 2014
+([0.0.5](https://github.com/jonahoffline/link_shrinkex/tree/v0.0.5)).
+
+* Fix protocol implementation for `Blank, Number, Float, Integer, Tuple, Atom` (Elixir 0.12.2)
+* Add library to expm (Elixir Package Manager)
+* Add VERSION file for centralized versioning
+* Update copyright year in License
+* Update version to 0.0.5
+
+
 ## 0.0.4
 
 Released October 23, 2013
