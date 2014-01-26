@@ -1,4 +1,4 @@
-# LinkShrinkex (v0.0.4) [![Build Status](https://travis-ci.org/jonahoffline/link_shrinkex.png?branch=master)](https://travis-ci.org/jonahoffline/link_shrinkex)
+# LinkShrinkex (v0.0.5) [![Build Status](https://travis-ci.org/jonahoffline/link_shrinkex.png?branch=master)](https://travis-ci.org/jonahoffline/link_shrinkex)
 
 
 Create short URLs using Google's URL Shortener API.
