@@ -8,10 +8,11 @@ notifications:
       - irc.freenode.org#rubyonadhd
     template:
       - "Yo yo yo yo!! Make some noise, Ta-ta-ta Travis-bot in da house motherfuckers, this build better represent!"
-      - "%{author} pushed some of his magical code to the %{branch} branch in %{repository} (%{commit})."
-      - "I just finished testing it and DAYUMMM, it looks like %{message}"
+      - "I Just finished testing what %{author} pushed in %{commit} to %{repository} - %{master}"
+      - "and DAYUMMM, it looks like %{message}"
       - "Change view : %{compare_url}"
       - "Build details : %{build_url}"
+      skip_join: true
 otp_release:
   - R16B
 before_install:
