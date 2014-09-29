@@ -1,5 +1,18 @@
 # LinkShrinkex Changelog
 
+## 1.0.0
+
+Released September 28, 2014
+([1.0.0](https://github.com/jonahoffline/link_shrinkex/tree/v1.0.0)).
+
+* Replace deprecated `list_to_bitstring` with `:erlang.list_to_bitstring` (Elixir 1.0.0)
+* Replace deprecated `String.to_char_list!` with `String.to_char_list` (Elixir 1.0.0)
+* Replace deprecated `defexception/2` to `defexception/1` (Elixir 1.0.0)
+* Fix breaking `LinkShrinkex.Error` tests to expect `ArgumentError`
+* Update version to 1.0.0
+* Update version in README
+
+
 ## 0.0.5
 
 Released January 26, 2014
