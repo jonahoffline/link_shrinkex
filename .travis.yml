@@ -12,7 +12,7 @@ notifications:
       - "and DAYUMMM, it looks like %{message}"
       - "Change view : %{compare_url}"
       - "Build details : %{build_url}"
-      skip_join: true
+    skip_join: true
 otp_release:
   - R16B
 before_install:
