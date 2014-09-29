@@ -1,4 +1,4 @@
-# LinkShrinkex (v0.0.5) [![Build Status](https://travis-ci.org/jonahoffline/link_shrinkex.png?branch=master)](https://travis-ci.org/jonahoffline/link_shrinkex)
+# LinkShrinkex (v1.0.0) [![Build Status](https://travis-ci.org/jonahoffline/link_shrinkex.png?branch=master)](https://travis-ci.org/jonahoffline/link_shrinkex)
 
 
 Create short URLs using Google's URL Shortener API.
@@ -52,8 +52,3 @@ MIX_ENV=test mix do deps.get, test
 ```
 
 Create a Pull Request :)
-
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/jonahoffline/link_shrinkex/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
