@@ -43,16 +43,19 @@ defmodule LinkShrinkex do
     * [:short_url] - Returns the short url only
   """
   def shrink_url(url, opts), do: LinkShrinkex.Request.shrink_url(url, opts)
-end
 
-defexception LinkShrinkex.Error, value: nil do
-  def message(exception), do: "#{inspect exception.value} cannot be sent to Google Url Shortner API."
+  defmodule Error do
+    defexception [:message]
+    def exception(message) do
+      %Error{message: "#{inspect message.value} cannot be sent to Google Url Shortner API."}
+    end
+  end
 end
 
 defprotocol LinkShrinkex.Request do
   @only [BitString, List, Any]
   def prepare_request_body(url)
-  def shrink_url(url, opts // [])
+  def shrink_url(url, opts)
 end
 
 defimpl LinkShrinkex.Request, for: [Blank, Number, Float, Integer, Tuple, Atom] do
@@ -62,7 +65,7 @@ end
 
 defimpl LinkShrinkex.Request, for: BitString do
   def prepare_request_body(url) do
-    String.to_char_list!("{'longUrl': '" <> URI.decode(url) <>"'}")
+    String.to_char_list("{'longUrl': '" <> URI.decode(url) <>"'}")
   end
 
   def shrink_url(url), do: shrink_url(url, [])
@@ -71,18 +74,18 @@ defimpl LinkShrinkex.Request, for: BitString do
       { :ok, {{ _, 200, _}, _, body }} ->
         case opts do
           [:json] ->
-            { :ok, res } = JSEX.decode(list_to_bitstring(body), [{ :labels, :atom }])
+            { :ok, res } = JSEX.decode(:erlang.list_to_bitstring(body), [{ :labels, :atom }])
             JSEX.encode(res)
           [:list] ->
-            JSEX.decode(list_to_bitstring(body), [{ :labels, :atom }])
+            JSEX.decode(:erlang.list_to_bitstring(body), [{ :labels, :atom }])
           [:urls] ->
-            { :ok, [_, short_url, long_url] } = JSEX.decode(list_to_bitstring(body), [{ :labels, :atom }])
-            { :ok, [short_url, long_url] }
+            { :ok, res } = JSEX.decode(:erlang.list_to_bitstring(body), [{ :labels, :atom }])
+            { :ok, %{id: res[:id], longUrl: res[:longUrl]} }
           [:short_url] ->
-            { :ok, res } = JSEX.decode(list_to_bitstring(body), [{ :labels, :atom }])
+            { :ok, res } = JSEX.decode(:erlang.list_to_bitstring(body), [{ :labels, :atom }])
             res[:id]
           _ ->
-            { :ok, res } = JSEX.decode(list_to_bitstring(body), [{ :labels, :atom }])
+            { :ok, res } = JSEX.decode(:erlang.list_to_bitstring(body), [{ :labels, :atom }])
             { :ok, res[:id] }
         end
       { :ok, {{ _, 400, _ }, _, _ }} ->
