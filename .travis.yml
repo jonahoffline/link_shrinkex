@@ -1,8 +1,6 @@
 language: erlang
 env:
   - ELIXIR="v1.0.0"
-otp_release:
-  - 17.3
 notifications:
   email:
     recipients:
@@ -17,6 +15,8 @@ notifications:
       - "Change view : %{compare_url}"
       - "Build details : %{build_url}"
     skip_join: true
+otp_release:
+  - 17.3
 before_install:
   - mkdir -p vendor/elixir
   - wget -q https://github.com/elixir-lang/elixir/releases/download/$ELIXIR/Precompiled.zip && unzip -qq Precompiled.zip -d vendor/elixir
