@@ -14,7 +14,7 @@ defmodule LinkShrinkex.Mixfile do
 
   # Returns the list of dependencies in the format:
   defp deps do
-    [{ :jsex, "0.2", github: "talentdeficit/jsex" }]
+    [{ :jsex, "2.1.0", github: "talentdeficit/jsex" }]
   end
 end
 

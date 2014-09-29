@@ -1,2 +1,2 @@
-[ "jsex": {:git, "git://github.com/talentdeficit/jsex.git", "c9df36f07b2089a73ab6b32074c01728f1e5a2e1", []},
-  "jsx": {:git, "git://github.com/talentdeficit/jsx.git", "e50af6e109cb03bd26acf715cbc77de746507d1d", [{:tag, "v1.4.3"}]} ]
+%{"jsex": {:git, "git://github.com/talentdeficit/jsex.git", "4f9d46b77567a48282a3477f87ab72faf6bd1721", []},
+  "jsx": {:package, "2.1.1"}}
