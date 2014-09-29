@@ -16,6 +16,8 @@ notifications:
       - "Build details : %{build_url}"
     skip_join: true
 otp_release:
+  - 17.0
+  - 17.1
   - 17.3
 before_install:
   - mkdir -p vendor/elixir
