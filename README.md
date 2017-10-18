@@ -7,6 +7,11 @@ Written in Elixir.
 
 ## Quickstart ##
 
+Get an API key https://developers.google.com/url-shortener/v1/getting_started#APIKey
+
+Add an environment variable GOOGLE_URL_SHORTENER_API_KEY=KEYGOESHERE or open the config dir
+and add the key in the config files.
+
 Fetching dependencies and running on elixir console:
 
 ```console

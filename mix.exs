@@ -1,7 +1,7 @@
 defmodule LinkShrinkex.Mixfile do
   use Mix.Project
 
-  @version "1.0.1"
+  @version "2.0.0"
 
   def project do
     [ app: :link_shrinkex,
