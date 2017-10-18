@@ -9,10 +9,13 @@ Written in Elixir.
 
 Get an API key https://developers.google.com/url-shortener/v1/getting_started#APIKey
 
-Add an environment variable GOOGLE_URL_SHORTENER_API_KEY=KEYGOESHERE
+Add an environment variable GOOGLE_URL_SHORTENER_API_KEY=YOUR_KEY_GOES_HERE
+
+Add the following config to your config files
 
 config :link_shrinkex,
   google_url_shortner_api_key: System.get_env("GOOGLE_URL_SHORTENER_API_KEY")
+
 
 Fetching dependencies and running on elixir console:
 
