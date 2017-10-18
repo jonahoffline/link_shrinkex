@@ -1,20 +1,22 @@
 defmodule LinkShrinkex.Mixfile do
   use Mix.Project
 
+  @version "1.0.1"
+
   def project do
     [ app: :link_shrinkex,
-      version: String.strip(File.read!("VERSION")),
+      version: @version,
       elixir: "~> 1.0",
-      deps: deps,
+      deps: deps(),
       source_url: "https://github.com/jonahoffline/link_shrinkex",
-      description: description,
-      package: package
+      description: description(),
+      package: package()
     ]
   end
 
   # Configuration for the OTP application
   def application do
-    [applications: [:jsex, :inets, :ssl]]
+    [applications: [:inets, :ssl]]
   end
 
   defp description do
@@ -31,6 +33,6 @@ defmodule LinkShrinkex.Mixfile do
 
   # Returns the list of dependencies in the format:
   defp deps do
-    [{ :jsex, "2.1.0", github: "talentdeficit/jsex" }]
+    [{:poison, "~> 3.1"}]
   end
 end

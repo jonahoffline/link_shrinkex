@@ -1,6 +1,5 @@
 defmodule LinkShrinkex do
 
-  @shortdoc "Creates a short URL."
   @moduledoc """
   Creates a short URL using Google's URL Shortener API.
 
@@ -53,7 +52,6 @@ defmodule LinkShrinkex do
 end
 
 defprotocol LinkShrinkex.Request do
-  @only [BitString, List, Any]
   def prepare_request_body(url)
   def shrink_url(url, opts)
 end
@@ -65,27 +63,27 @@ end
 
 defimpl LinkShrinkex.Request, for: BitString do
   def prepare_request_body(url) do
-    String.to_char_list("{'longUrl': '" <> URI.decode(url) <>"'}")
+    String.to_charlist("{'longUrl': '" <> URI.decode(url) <>"'}")
   end
 
   def shrink_url(url), do: shrink_url(url, [])
   def shrink_url(url, opts) do
-    case :httpc.request(:post, { 'https://www.googleapis.com/urlshortener/v1/url', [], 'application/json', prepare_request_body(url) },[], []) do
+    case :httpc.request(:post, { 'https://www.googleapis.com/urlshortener/v1/url?key=#{Application.get_env(:link_shrinkex, :google_url_shortner_api_key)}', [], 'application/json', prepare_request_body(url) },[], []) do
       { :ok, {{ _, 200, _}, _, body }} ->
         case opts do
           [:json] ->
-            { :ok, res } = JSEX.decode(:erlang.list_to_bitstring(body), [{ :labels, :atom }])
-            JSEX.encode(res)
+            { :ok, res } = Poison.decode(body, [keys: :atoms])
+            Poison.encode(res)
           [:list] ->
-            JSEX.decode(:erlang.list_to_bitstring(body), [{ :labels, :atom }])
+            Poison.decode(body, [keys: :atoms])
           [:urls] ->
-            { :ok, res } = JSEX.decode(:erlang.list_to_bitstring(body), [{ :labels, :atom }])
+            { :ok, res } = Poison.decode(body, [keys: :atoms])
             { :ok, %{id: res[:id], longUrl: res[:longUrl]} }
           [:short_url] ->
-            { :ok, res } = JSEX.decode(:erlang.list_to_bitstring(body), [{ :labels, :atom }])
+            { :ok, res } = Poison.decode(body, [keys: :atoms])
             res[:id]
           _ ->
-            { :ok, res } = JSEX.decode(:erlang.list_to_bitstring(body), [{ :labels, :atom }])
+            { :ok, res } = Poison.decode(body, [keys: :atoms])
             { :ok, res[:id] }
         end
       { :ok, {{ _, 400, _ }, _, _ }} ->
@@ -93,4 +91,3 @@ defimpl LinkShrinkex.Request, for: BitString do
     end
   end
 end
-
