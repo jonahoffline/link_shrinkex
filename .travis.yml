@@ -2,8 +2,8 @@ language: elixir
 elixir:
   - '1.5.1'
 otp_release:
-  - '20'
+  - '20.1'
 notifications:
   email:
     recipients:
-      - inicsmith@gmail.com 
+      - inicsmith@gmail.com
