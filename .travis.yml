@@ -1,28 +1,9 @@
-language: erlang
-env:
-  - ELIXIR="v1.0.0"
+language: elixir
+elixir:
+  - '1.5.1'
+otp_release:
+  - '20'
 notifications:
   email:
     recipients:
-      - jonah@pixelhipsters.com
-  irc:
-    channels:
-      - irc.freenode.org#rubyonadhd
-    template:
-      - "Yo yo yo yo!! Make some noise, Ta-ta-ta Travis-bot in da house motherfuckers, this build better represent!"
-      - "I Just finished testing what %{author} pushed in %{commit} to %{repository} - %{master}"
-      - "and DAYUMMM, it looks like %{message}"
-      - "Change view : %{compare_url}"
-      - "Build details : %{build_url}"
-    skip_join: true
-otp_release:
-  - 17.0
-  - 17.1
-before_install:
-  - mkdir -p vendor/elixir
-  - wget -q https://github.com/elixir-lang/elixir/releases/download/$ELIXIR/Precompiled.zip && unzip -qq Precompiled.zip -d vendor/elixir
-  - export PATH="$PATH:$PWD/vendor/elixir/bin"
-  - mix local.hex --force
-  - mix local.rebar
-script: "MIX_ENV=test mix do deps.get, test"
-
+      - inicsmith@gmail.com 
