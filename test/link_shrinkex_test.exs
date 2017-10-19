@@ -10,8 +10,8 @@ defmodule LinkShrinkexTest do
   test ".shrink_url returns correct response" do
     LinkShrinkex.start
 
-    assert LinkShrinkex.shrink_url("http://www.elixir-lang.org") == { :ok, "http://goo.gl/Shz0u" }
-    assert LinkShrinkex.shrink_url("http://www.elixir-lang.org", []) == { :ok, "http://goo.gl/Shz0u" }
+    assert LinkShrinkex.shrink_url("http://www.elixir-lang.org") == { :ok, "https://goo.gl/Shz0u" }
+    assert LinkShrinkex.shrink_url("http://www.elixir-lang.org", []) == { :ok, "https://goo.gl/Shz0u" }
   end
 
 
@@ -20,34 +20,34 @@ defmodule LinkShrinkexTest do
   test "returns short_url with [:short_url] option" do
     LinkShrinkex.start
 
-    assert LinkShrinkex.shrink_url("http://www.elixir-lang.org", [:short_url]) == "http://goo.gl/Shz0u"
+    assert LinkShrinkex.shrink_url("http://www.elixir-lang.org", [:short_url]) == "https://goo.gl/Shz0u"
   end
 
   test "returns short and long urls with [:urls] option" do
     LinkShrinkex.start
 
-    expected_response_urls = { :ok, %{id: "http://goo.gl/Shz0u", longUrl: "http://www.elixir-lang.org/"} }
+    expected_response_urls = { :ok, %{id: "https://goo.gl/Shz0u", longUrl: "http://www.elixir-lang.org/"} }
     assert LinkShrinkex.shrink_url("http://www.elixir-lang.org", [:urls]) == expected_response_urls
   end
 
   test "returns parsed JSON with [:json] option" do
     LinkShrinkex.start
 
-    expected_response = {:ok,"{\"id\":\"http://goo.gl/Shz0u\",\"kind\":\"urlshortener#url\",\"longUrl\":\"http://www.elixir-lang.org/\"}"}
+    expected_response = {:ok, "{\"longUrl\":\"http://www.elixir-lang.org/\",\"kind\":\"urlshortener#url\",\"id\":\"https://goo.gl/Shz0u\"}"}
     assert LinkShrinkex.shrink_url("http://www.elixir-lang.org", [:json]) == expected_response
   end
 
   test "returns list with [:list] option" do
     LinkShrinkex.start
 
-    expected_response = {:ok,%{id: "http://goo.gl/Shz0u", kind: "urlshortener#url", longUrl: "http://www.elixir-lang.org/"}}
+    expected_response = {:ok,%{id: "https://goo.gl/Shz0u", kind: "urlshortener#url", longUrl: "http://www.elixir-lang.org/"}}
     assert LinkShrinkex.shrink_url("http://www.elixir-lang.org", [:list]) == expected_response
   end
 
   test "returns default response with non-existant option" do
     LinkShrinkex.start
 
-    assert LinkShrinkex.shrink_url("http://www.elixir-lang.org", [:non_existant]) == { :ok, "http://goo.gl/Shz0u" }
+    assert LinkShrinkex.shrink_url("http://www.elixir-lang.org", [:non_existant]) == { :ok, "https://goo.gl/Shz0u" }
   end
 
 
@@ -104,4 +104,3 @@ defmodule LinkShrinkexTest do
     end
   end
 end
-
